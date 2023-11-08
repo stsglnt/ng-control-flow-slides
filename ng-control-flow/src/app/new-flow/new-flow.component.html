@@ -1,0 +1,54 @@
+<br>
+<mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style"
+                         [(ngModel)]="condition">
+  <mat-button-toggle value="one">Condition ONE</mat-button-toggle>
+  <mat-button-toggle value="two">Condition TWO</mat-button-toggle>
+  <mat-button-toggle value="other">SOMETHING ELSE</mat-button-toggle>
+</mat-button-toggle-group>
+
+<!--@IF-->
+<div style="margin-top: 20px">
+  <span>&#64;if</span>
+  @if (condition === Conditions.One) {
+    <div>Condition ONE is true</div>
+  } @else if (condition === Conditions.Two) {
+    <div>Condition TWO is true</div>
+  } @else {
+    <div>Conditions ONE and TWO are false</div>
+  }
+</div>
+<hr>
+<!--@SWITCH-->
+<div>
+<span>&#64;switch</span>
+  @switch (condition) {
+    @case (Conditions.One) {
+      <div>Condition ONE is true</div>
+    } @case (Conditions.Two) {
+      <div>Condition TWO is true</div>
+    } @default {
+      <div>Conditions ONE and TWO are false</div>
+    }
+  }
+</div>
+<hr>
+<!--@for-->
+<div style="display: flex; gap: 8px;">
+  <button mat-raised-button color="warn" (click)="items = []">Set list as <i>[]</i></button>
+  <button mat-raised-button color="warn" (click)="items = undefined">Set list as <i>undefined</i></button>
+  <button mat-raised-button color="warn" (click)="items = null">Set list as <i>null</i></button>
+  <button mat-raised-button color="warn" (click)="setItemsAsEmptySet()">Set list as empty Set</button>
+  <button mat-raised-button color="primary" (click)="restoreItems()">Restore list</button>
+</div>
+<div>
+  <span>&#64;for</span>
+  @for (item of items; track item.id; let even = $even) {
+    <li>
+      {{item.name}} {{$index}}/{{$count}}  || isOdd: <i>{{$odd}}</i> || isEven: <i>{{even}}</i>
+    </li>
+  } @empty {
+    <div>Items list is empty {{items | json}}</div>
+  }
+</div>
+
+

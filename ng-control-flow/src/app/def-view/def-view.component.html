@@ -1,0 +1,7 @@
+Deferrable view is awesome 🐦, see nested content here:
+
+@defer (prefetch on immediate) {
+  <app-nested-def-view></app-nested-def-view>
+} @loading (minimum 3s) {
+  <mat-spinner [diameter]="15" />
+}
